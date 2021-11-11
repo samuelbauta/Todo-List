@@ -22,17 +22,20 @@ Once you are finished editing it, click the enter key to complete the edit, upon
 
 In order to remove an item, select the item you wish to remove and click the remove button.
 
-4) How to filter the list
+4) In order to clear a list, click the clear button and your list will be cleared.
+
+
+5) How to filter the list
 
 In order to filter the list, click on the view list options button. A dropdown will appear and allow you to select the filter that you wish. Click the "view only completed," to view
 only the completed items. Click on the "view only incomplete," to view only the incomplete items. Click "view all," to view all the items again.
 
-5) How to save a list
+6) How to save a list
 
 In order to save a list, click the save list button. Upon doing so a save window will appear and you will be allowed to enter a title for the list file and select the destination in which you save it.
 
 Enter the title and destination fields and click ok. The file will be saved as a text file onto your local storage.
 
-6) How to load a list
+7) How to load a list
 
 In order to load a list, click on the open list button. Open doing so, an open window will appear and you will be allowed to select a text file to open. Select the file and click ok. The text file list will be loaded into the application.
