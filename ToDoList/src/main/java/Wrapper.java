@@ -1,42 +1,68 @@
 /*
- *  UCF COP3330 Fall 2021 Application Assignment 1 Solution
- *  Copyright 2021 Samuel Bauta
+UCF COP3330 Fall 2021 Application Assignment 1 Solution
+ Copyright 2021 Samuel Bauta
  */
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-
-/*
-I am still trying to figure out how to do this wrapper class. I want to have this
-class wrap around my controller class, but I'm still figuring this out.
-
-So far I have sample data shoved into the observable list to simply populate the list but nothing more
- */
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 public class Wrapper {
 
-    private ObservableList<Item> items;
+    //create observable list
+    ObservableList<Item> list = FXCollections.observableArrayList();
 
-    public Wrapper() {
-
-        items = FXCollections.observableArrayList();
-        items.add(new Item("January 1", "Willy"));
-        items.add(new Item("January 2", "Willy"));
-        items.add(new Item("January 3", "Willy"));
-
+    //returns the observable list
+    public ObservableList<Item> getList() {
+        return list;
     }
 
-    /*
-    These are simply getters and setters to be used by other classes
-     */
-    public ObservableList<Item> getItems() {
-        return items;
+    //add item to the list
+    public void addItem(Item newItem){
+        getList().addAll(newItem);
     }
 
-    public void setItems(ObservableList<Item> items) {
-        this.items = items;
+    //get status from Item class
+    public void itemStatus(){
+        Item item = new Item();
+        item.getStatus();
     }
 
+    //removes the item from list
+    public void removeItem(Item index){
+        getList().remove(index);
+    }
+
+    //clear the list
+    public void clearList(){
+        getList().clear();
+    }
+
+    public void saveList() {
+        //method saves list to local storage
+        //create new file chooser
+        FileChooser fileChooser = new FileChooser();
+        //create filter to only save text file
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Text files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(filter);
+        //open a new window that shows a save dialogue
+        File file = fileChooser.showSaveDialog(new Stage());
+        String status = null;
+
+        //write a text file with the values from the list
+        try {
+            BufferedWriter wr = new BufferedWriter(new FileWriter(file));
+            for (Item item : list) {
+                status = item.getStatus().isSelected() == true ? "Complete, " : "Incomplete, ";
+                wr.write(status + item.getDate() + ", " + item.getDescription());
+                wr.newLine();
+            }
+            wr.close();
+        }catch(Exception e) {
+            System.out.println("null");
+        }
+    }
 }

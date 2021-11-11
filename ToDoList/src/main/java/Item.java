@@ -1,37 +1,38 @@
 /*
- *  UCF COP3330 Fall 2021 Application Assignment 1 Solution
- *  Copyright 2021 Samuel Bauta
+UCF COP3330 Fall 2021 Application Assignment 1 Solution
+ Copyright 2021 Samuel Bauta
  */
 
-/*
-This is the item class, basically, this class contains the only inputs for data which are
-description and date, I'm still looking into how to implement a mark as complete section
 
-for right now in my FXML I simply have it as a button but embedding a checkbox into a third
-column may be a possibility I explore. I'm kind of saving it for last, but depending on which
-approach I take the Item class may be altered by the second commit
- */
-
-import java.time.LocalDate;
+import javafx.scene.control.CheckBox;
 
 public class Item {
 
-    private String description = null;
-    private String date = null;
+    //declaring variables of Item class
+    private String description;
+    private String date;
+    private CheckBox status;
 
-    public Item(){
-
-    }
-
-    public Item(String description, String date){
+    public Item(String date, String description)
+    {
         this.description = description;
         this.date = date;
+        this.status = new CheckBox();
     }
 
-    public Item(String text, LocalDate value) {
+    public Item(String description,String date, boolean selected)
+    {
+        this.description = description;
+        this.date = date;
+        this.status = new CheckBox();
+        this.status.selectedProperty().setValue(selected);
+    }
+
+    public Item() {
 
     }
 
+    //create setters and getters to be accessed elsewhere
     public String getDescription() {
         return description;
     }
@@ -48,4 +49,11 @@ public class Item {
         this.date = date;
     }
 
+    public CheckBox getStatus() {
+        return status;
+    }
+
+    public void setStatus(CheckBox status) {
+        this.status = status;
+    }
 }

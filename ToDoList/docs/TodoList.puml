@@ -1,27 +1,56 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+class Application{
+}
+class TodoListApplication{
+        -start()
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+Application <|-- TodoListApplication
+Wrapper o-- TodoListController
+Item o-- Wrapper
+Item o-- TodoListController
+class Wrapper{
+       -observableList Item
+       +wrapper()
 }
+class Item{
+       -String Description
+       -String Date
+       -CheckBox status
+
+       +getDescription()
+       +setDescription()
+       +getDate()
+       +setDate()
+       +getStatus()
+       +setStatus()
+       +descriptionProperty()
+       +dateProperty()
+}
+class TodoListController{
+
+       -DatePicker dateBox
+       -DateButton addItemButton
+       -TableColumn checkColumn
+       -Button clearListButton
+       -MenuItem
+
+       +initialize()
+       viewComplete()
+       viewIncomplete()
+       viewAll()
+       EditListItem()
+       AddListItem()
+       AddDate()
+       ClearList()
+       OpenListFile()
+       UserGuide()
+       RemoveItemFromList()
+       SaveFile()
+
+}
+
+
 
 @enduml
